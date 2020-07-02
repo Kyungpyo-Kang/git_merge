@@ -1,0 +1,87 @@
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
+
+<script>
+    $(document).ready(function(){
+    //최상단 체크박스 클릭
+    $("#checkall").click(function(){
+        //클릭되었으면
+        if($("#checkall").prop("checked")){
+            //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 true로 정의
+            $("input[name=chk]").prop("checked",true);
+            //클릭이 안되있으면
+        }else{
+            //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
+            $("input[name=chk]").prop("checked",false);
+        }
+    })
+})
+</script>
+
+  <style>
+    h1 {
+        text-align: center;
+        color: #ffffff;
+      }
+  </style>
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{%url 'index'%}">Cafe</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    
+    </nav>
+
+    <br>
+    
+    <div class="container">
+      <div class="h1">
+        <div class="alert alert-warning" role="alert">
+          <b>상품 삭제(Update)</b>
+        </div>
+      </div>
+      
+    
+      <table class="table">
+      
+        <thead>
+            <tr>
+            <td scope="col"><input type="checkbox" id="checkall"/></td>
+            <th scope="col">#</th>
+            <th scope="col">검색된 상품명</th>
+            <th scope="col">검색된 상품가격(원)</th>
+            </tr>
+        </thead>
+        
+        <form action="{%url 'delete'%}">
+        {%for product in products%}
+        <tbody>
+            <tr>
+            <td><input type="checkbox" name="chk" value='{{product.product_name}}'/></td>
+            <th scope="row">{{product.id}}</th>
+            <td>{{product.product_name}}</td>
+            <td>{{product.product_price}}</td>
+            </tr>
+        </tbody>
+        {%endfor%}
+        
+    </table>
+        
+        <button type="submit" class="btn btn-primary">삭제!</button>
+        </form>
+      
+    </div>
+    
+
+</body>
+
